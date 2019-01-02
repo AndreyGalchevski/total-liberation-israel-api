@@ -1,0 +1,28 @@
+{
+  "name": "total-liberation-israel-api",
+  "version": "0.0.1",
+  "description": "Official Total Liberation Israel website API",
+  "author": "Andrey Galchevski <andreygalchevskit@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=prod node app.js",
+    "dev": "NODE_ENV=dev nodemon app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.3",
+    "body-parser": "^1.18.3",
+    "cloudinary": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "form-data": "^2.3.3",
+    "moment": "^2.23.0",
+    "mongoose": "^5.4.1",
+    "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
