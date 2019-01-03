@@ -9,19 +9,18 @@ const dbConfig = require("./config/db");
 const cloudinaryConfig = require("./config/cloudinary");
 const routes = require('./routes/index');
 
-const app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-
-app.use(passport.initialize());
-app.use(passport.session());
 require('./config/passport')(passport);
 
 cloudinary.config(cloudinaryConfig);
 dbConfig.connectToDB();
 
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/api', routes);
 
 const port = process.env.PORT || 3000;

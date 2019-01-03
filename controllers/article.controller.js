@@ -14,7 +14,7 @@ const getById = async articleId => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 const save = async newArticle => {
   var new_article = new Article({
@@ -38,7 +38,7 @@ const update = (articleId, updatedFields) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 const remove = async query => {
   try {
@@ -46,6 +46,6 @@ const remove = async query => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 module.exports = { getAll, getById, save, update, remove };

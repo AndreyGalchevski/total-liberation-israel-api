@@ -15,24 +15,30 @@ const routeHandlers = {
 };
 
 router.get('/', routeHandlers.get);
+
 router.get('/:id', routeHandlers.getOne);
+
 router.post(
   '/', 
   passport.authenticate('jwt', { session: false }), 
   routeHandlers.post
 );
+
 router.put('/:id', routeHandlers.put);
+
 router.delete(
   '/:id', 
   passport.authenticate('jwt', { session: false }), 
   routeHandlers.delete
 );
+
 router.patch(
   '/:id/image', 
   upload.fields([{ name: 'articleImg', maxCount: 1 }]), 
   passport.authenticate('jwt', { session: false }),
   routeHandlers.uploadImage
 );
+
 router.delete(
   '/:id/image', 
   passport.authenticate('jwt', { session: false }),
