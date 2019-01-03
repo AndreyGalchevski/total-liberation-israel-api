@@ -34,7 +34,8 @@ const save = async newArticle => {
 
 const update = (articleId, updatedFields) => {
   try {
-    return Article.findOneAndUpdate({ _id: articleId }, updatedFields, { new: true });    
+    const opts = { new: true, runValidators: true };
+    return Article.findOneAndUpdate({ _id: articleId }, updatedFields, opts);    
   } catch (error) {
     throw error;
   }

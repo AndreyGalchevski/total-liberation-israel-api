@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
-  title: String,
-  author: String,
-  date: Date,
-  lead: String,
+  title: { type: String, required: true },
+  author: { type: String, required: true },
+  date: { type: Date, required: true },
+  lead: { type: String, required: true },
   content: Object,
   image: String
 });

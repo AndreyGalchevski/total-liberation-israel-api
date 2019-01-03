@@ -47,7 +47,8 @@ const remove = async filter => {
 
 const update = (eventId, updatedFields) => {
   try {
-    return Event.findOneAndUpdate({ _id: eventId }, updatedFields, { new: true });    
+    const opts = { new: true, runValidators: true };
+    return Event.findOneAndUpdate({ _id: eventId }, updatedFields, opts);    
   } catch (error) {
     throw error;
   }

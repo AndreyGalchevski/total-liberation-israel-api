@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
-  title: String,
-  date: Date,
-  description: String,
-  fbPage: String,
+  title: { type: String, required: true },
+  date: { type: Date, required: true },
+  description: { type: String, required: true },
+  fbPage: { type: String, required: true },
   image: String
 });
 
