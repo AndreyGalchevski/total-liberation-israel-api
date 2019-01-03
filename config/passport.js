@@ -9,14 +9,14 @@ module.exports = function(passport) {
 
     passport.use(new Strategy(opts, async (jwt_payload, done) => {
         try {
-            const user = await userController.getOne({ _id: jwt_payload._doc._id });
+            const user = await userController.getOne({ _id: jwt_payload._id });
             if (user) {
                 return done(null, user);
             } else {
                 return done(null, false);
             }
-        } catch (error) {
-            return done(err, false);
+        } catch (e) {
+            return done(e, false);
         }
     }));
 };

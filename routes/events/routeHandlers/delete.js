@@ -1,13 +1,11 @@
-const cloudinary = require('cloudinary');
-
+const cloudinaryUtils = require('../../../utils/cloudinary');
 const eventController = require('../../../controllers/event.controller');
 
 module.exports = async (req, res) => {
   try {
-    let event = await eventController.remove({ _id: req.params.id });
-    let public_id = 'alf-israel/events/' + event.image.substr(-24, 20);
+    const event = await eventController.remove({ _id: req.params.id });
     try {
-      let response = await cloudinary.v2.uploader.destroy(public_id);
+      const response = await cloudinaryUtils.remove(event.image, 'alf-israel/events');
       res.send(response);
     } catch (error) {
       res.status(500).send({ error: `Error while deleting an event image: ${e}` });     

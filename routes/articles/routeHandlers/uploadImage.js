@@ -1,29 +1,34 @@
-const cloudinary = require('cloudinary');
 const fs = require('fs');
+const _ = require('lodash');
 
+const cloudinaryUtils = require('../../../utils/cloudinary');
 const articleController = require('../../../controllers/article.controller');
 
 module.exports = async (req, res) => {
   try {
-    const result = await cloudinary.v2.uploader.upload(req.files.articleImg[0].path, {
-      folder: 'alf-israel/articles'
-    });
+    const imagePath = _.get(req, 'files.articleImg[0].path');
+    if (!imagePath) {
+      res.status(400).send({ error: 'Image not attached' });
+    }
 
-    fs.unlink(req.files.articleImg[0].path, err => {
-      if (err) {
-        throw new Error(`Failed to delete local image: ${err}`);
-      }
+    const result = await cloudinaryUtils.upload(imagePath, 'alf-israel/articles');
+
+    fs.unlink(imagePath, e => {
+      if (e) throw new Error(`Failed to delete local image: ${e}`);
     });
 
     const updatedFields = {
       image: result.secure_url
     };
 
-    const updatedArticle = await articleController.update(req.params.id, updatedFields);
+    try {
+      const updatedArticle = await articleController.update(req.params.id, updatedFields);
+      res.send({ updatedArticle });
+    } catch (e) {
+      res.status(500).send({ error: `Failed to update the article: ${e}` });      
+    }
 
-    res.send({ updatedArticle });
   } catch (e) {
     res.status(500).send({ error: `Image upload failed: ${e}` });
-    return;
   }
 };

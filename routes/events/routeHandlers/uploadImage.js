@@ -1,10 +1,17 @@
+const fs = require('fs');
+const _ = require('lodash');
+
+const cloudinaryUtils = require('../../../utils/cloudinary');
 const eventController = require('../../../controllers/event.controller');
 
 module.exports = async (req, res) => {
   try {
-    const result = await cloudinary.v2.uploader.upload(req.files.eventImg[0].path, {
-      folder: 'alf-israel/events'
-    })
+    const imagePath = _.get(req, 'files.eventImg[0].path');
+    if (!imagePath) {
+      res.status(400).send({ error: 'Image not attached' });
+    }
+
+    const result = await cloudinaryUtils.upload(imagePath, 'alf-israel/events');
     
     fs.unlink(req.files.eventImg[0].path)
     

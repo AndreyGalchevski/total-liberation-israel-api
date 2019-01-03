@@ -1,15 +1,13 @@
-const cloudinary = require('cloudinary');
-
+const cloudinaryUtils = require('../../../utils/cloudinary');
 const articleController = require('../../../controllers/article.controller');
 
 module.exports = async (req, res) => {
   try {
-    let article = await articleController.remove({_id: req.params.id});
-    let public_id = 'alf-israel/articles/' + article.image.substr(-24, 20);
+    const article = await articleController.remove({_id: req.params.id});
     try {
-      let response = await cloudinary.v2.uploader.destroy(public_id);
+      const response = await cloudinaryUtils.remove(article.image, 'alf-israel/articles');
       res.send(response);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({ error: `Error while deleting an article image: ${e}` });      
     }
   } catch (e) {
