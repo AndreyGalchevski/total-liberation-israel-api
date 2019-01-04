@@ -1,12 +1,20 @@
 {
   "name": "total-liberation-israel-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Official Total Liberation Israel website API",
   "author": "Andrey Galchevski <andreygalchevskit@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AndreyGalchevski/total-liberation-israel-api.git"
+  },
   "license": "MIT",
   "scripts": {
     "start": "node bin/www",
     "dev": "nodemon bin/www"
+  },
+  "engines": {
+    "node": "10.15.0",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "bcrypt": "^3.0.3",
