@@ -1,9 +1,11 @@
 require('dotenv').config();
+const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cloudinary = require("cloudinary");
 const passport = require("passport");
-const express = require("express");
+const createError = require('http-errors');
+const logger = require('morgan');
 
 const dbConfig = require("./config/db");
 const cloudinaryConfig = require("./config/cloudinary");
@@ -16,15 +18,25 @@ dbConfig.connectToDB();
 
 const app = express();
 
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use('/api', routes);
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`server started at port ${port}`);
+app.use(function(req, res, next) {
+  next(createError(404));
 });
+
+app.use(function(err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
