@@ -3,16 +3,16 @@ const Article = require('./Article');
 const getAll = async () => {
   try {
     return Article.find().sort({ _id: -1 });    
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
 const getById = async articleId => {
   try {
     return Article.findById(articleId);
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
@@ -27,8 +27,8 @@ const save = async newArticle => {
 
   try {
     return new_article.save();
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
@@ -36,16 +36,16 @@ const update = (articleId, updatedFields) => {
   try {
     const opts = { new: true, runValidators: true };
     return Article.findOneAndUpdate({ _id: articleId }, updatedFields, opts);    
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
 const remove = async query => {
   try {
     return Article.findOneAndRemove(query);
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 

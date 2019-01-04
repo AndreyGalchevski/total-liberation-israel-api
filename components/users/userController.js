@@ -5,16 +5,16 @@ const User = require('./User');
 const getOne = async filter => {
   try {
     return User.findOne(filter);
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 }
 
 const comparePassword = async (password, hash) => {
   try {
     return bcrypt.compare(password, hash);
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 }
 

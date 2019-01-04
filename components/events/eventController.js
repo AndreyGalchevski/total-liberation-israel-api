@@ -11,16 +11,16 @@ const save = async newEvent => {
       fbPage: newEvent.fbPage
     });
     return new_event.save();
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
 const getAll = async () => {
   try {
     return Event.find({}).sort({ date: 1} );
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
@@ -32,16 +32,16 @@ const getAll = async () => {
 const getById = async eventIdToGet => {
   try {
     return Event.findById(eventIdToGet);
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
 const remove = async filter => {
   try {
     return Event.findOneAndRemove(filter);
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
@@ -49,8 +49,8 @@ const update = (eventId, updatedFields) => {
   try {
     const opts = { new: true, runValidators: true };
     return Event.findOneAndUpdate({ _id: eventId }, updatedFields, opts);    
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 }
 

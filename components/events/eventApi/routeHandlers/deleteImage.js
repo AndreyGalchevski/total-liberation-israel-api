@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     try {
       const response = await cloudinaryUtils.remove(event.image, 'alf-israel/events');
       res.send(response);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({ error: `Error while deleting an event image: ${e}` });     
     }
   } catch (e) {

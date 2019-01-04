@@ -19,11 +19,11 @@ module.exports = async (req, res) => {
         else {
           res.status(401).send({ error: 'Wrong password' })
         }
-      } catch (error) {
-        res.status(500).send({ error: `Error comparing passwords: ${error}` });
+      } catch (e) {
+        res.status(500).send({ error: `Error comparing passwords: ${e}` });
       }
     }
-  } catch (error) {
-    res.status(500).send({ error: `Error fetching user: ${error}` });
+  } catch (e) {
+    res.status(500).send({ error: `Error fetching user: ${e}` });
   }
 };
