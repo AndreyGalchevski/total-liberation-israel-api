@@ -1,9 +1,9 @@
 const express = require('express');
 
-const userRouter = require('./users/router');
-const eventRouter = require('./events/router');
-const articleRouter = require('./articles/router');
-const investigationRouter = require('./investigations/router');
+const userRouter = require('../components/users/userApi/router');
+const eventRouter = require('../components/events/eventApi/router');
+const articleRouter = require('../components/articles/articleApi/router');
+const investigationRouter = require('../components/investigations/investigationApi/router');
 
 const router = express.Router();
 

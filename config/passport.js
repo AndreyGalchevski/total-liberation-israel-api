@@ -1,6 +1,6 @@
 const { Strategy, ExtractJwt } = require("passport-jwt");
 
-const userController = require('../controllers/user.controller');
+const userController = require('../components/users/userController');
 
 module.exports = function(passport) {
     var opts = {};
