@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     const updatedFields = { name, latitude, longitude, url };
 
     const updatedInvestigation = await investigationController.update(req.params.id, updatedFields);
-    res.send(updatedInvestigation);
+    res.send({ updatedInvestigation });
   } catch (e) {
     res.status(500).send({ error: `Error while updating an investigation: ${e}` });
   } 

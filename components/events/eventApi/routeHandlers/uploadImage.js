@@ -13,7 +13,9 @@ module.exports = async (req, res) => {
 
     const result = await cloudinaryUtils.upload(imagePath, 'alf-israel/events');
     
-    fs.unlink(req.files.eventImg[0].path)
+    fs.unlink(req.files.eventImg[0].path, e => {
+      if (e) throw new Error(`Failed to delete local image: ${e}`);
+    })
     
     const updatedFields = {
       image: result.secure_url
