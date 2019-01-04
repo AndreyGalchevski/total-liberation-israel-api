@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+
 const router = express.Router();
 
 const routeHandlers = {
@@ -15,8 +16,8 @@ router.get('/', routeHandlers.get);
 router.get('/:id', routeHandlers.getOne);
 
 router.post(
-  '/', 
-  passport.authenticate('jwt', {session: false}), 
+  '/',
+  passport.authenticate('jwt', {session: false}),
   routeHandlers.post
 );
 
