@@ -16,18 +16,18 @@ const save = async newEvent => {
   }
 };
 
-const getAll = async () => {
-  try {
-    return Event.find({}).sort({ date: 1} );
-  } catch (e) {
-    throw e;
-  }
-};
-
 // const getAll = async () => {
-//   let startOfToday = moment().startOf('day');
-//   return Event.find({ date: { $gte: startOfToday.toDate() }}).sort({ date: 1} );
+//   try {
+//     return Event.find({}).sort({ date: 1} );
+//   } catch (e) {
+//     throw e;
+//   }
 // };
+
+const getAll = async () => {
+  let startOfToday = moment().startOf('day');
+  return Event.find({ date: { $gte: startOfToday.toDate() }}).sort({ date: 1} );
+};
 
 const getById = async eventIdToGet => {
   try {
